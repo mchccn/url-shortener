@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>url-shortener</title>
+    <style>
+      html {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        height: 100%;
+        font-family: "Fira Code", monospace;
+      }
+
+      main {
+        width: 600px;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: 300;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+      }
+
+      input[type="text"] {
+        font-size: 1rem;
+        padding: 0.25rem;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+      }
+
+      div input {
+        flex: 1;
+        font-family: "Fira Code", monospace;
+      }
+
+      div label {
+        margin-right: 0.25rem;
+      }
+
+      input[type="submit"] {
+        cursor: pointer;
+        font-size: 2rem;
+        padding: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Shorten a URL!</h1>
+      <form action="/new" method="post" id="form">
+        <div>
+          <label for="url">Absolute URL:</label>
+          <input type="text" name="url" id="url" autocomplete="off" autofocus />
+        </div>
+        <div>
+          <label for="maxUses" id="l">Max Uses: 1</label>
+          <input
+            type="range"
+            name="maxUses"
+            min="1"
+            max="100"
+            value="1"
+            oninput="document.getElementById('l').innerText = 'Max Uses: ' + this.value;"
+          />
+        </div>
+        <input type="submit" value="Shorten!" />
+      </form>
+    </main>
+    <script>
+      document.getElementById("form").addEventListener("submit", function (e) {
+        if (
+          !/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
+            document.getElementById("url").value
+          )
+        ) {
+          alert("Malformed absolute URL");
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>url-shortener</title>
+    <style>
+      html {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        font-family: "Fira Code", monospace;
+        font-size: 2rem;
+        text-align: center;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>Your id is <strong><%= id %></strong>!</main>
+    <script>
+      window.history.replaceState(null, null, window.location.href);
+    </script>
+  </body>
+</html>
